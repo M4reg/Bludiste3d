@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 public class MazeGenerator : MonoBehaviour
-{
+{            
     [SerializeField]
     private MazeCell _mazeCellPrefab;
 
