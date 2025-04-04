@@ -31,12 +31,27 @@ public class PauseMenu : MonoBehaviour
         PauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
         Paused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GD_FirstPersonController controller = Object.FindFirstObjectByType<GD_FirstPersonController>();
+        if (controller != null)
+        {
+            controller.enabled = false; // Disable the player controller
+        }
+
     }
     public void Play()
     {
         PauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
         Paused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        GD_FirstPersonController controller = Object.FindFirstObjectByType<GD_FirstPersonController>();
+        if (controller != null)
+        {
+            controller.enabled = true; // Enable the player controller
+        }
     }
     public void MainMenuButton(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
