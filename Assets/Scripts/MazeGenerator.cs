@@ -14,6 +14,12 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int _mazeDepth;
 
+    [SerializeField]
+    private GameObject _diamondPrefab;
+
+    [SerializeField]
+    private int _numberOfDiamonds = 4;
+
     private MazeCell[,] _mazeGrid;
 
     void Start()
@@ -29,6 +35,7 @@ public class MazeGenerator : MonoBehaviour
         }
 
         GenerateMaze(null, _mazeGrid[0,0]);
+        PlaceDiamonds();
     }
 
     private void GenerateMaze(MazeCell previousCell, MazeCell currentCell)
@@ -128,6 +135,35 @@ public class MazeGenerator : MonoBehaviour
               currentCell.ClearFrontWall();
               return;
          }
+    }
+
+    private void PlaceDiamonds()
+    {
+        List<MazeCell> visitedCells = new List<MazeCell>();
+
+        foreach(var cell in _mazeGrid)
+        {
+            if(cell.IsVisited)
+            {
+                visitedCells.Add(cell);
+            }
+        }
+
+        // Zamíchej seznam navštívených buněk
+        for(int i = 0; i < visitedCells.Count; i++)
+        {
+            int rand = Random.Range(i, visitedCells.Count);
+            var temp = visitedCells[i];
+            visitedCells[i] = visitedCells[rand];
+            visitedCells[rand] = temp;
+        }
+
+        // Spawn diamantů do prvních N buněk
+        for (int i = 0; i < _numberOfDiamonds && i < visitedCells.Count; i++)
+        {
+            var spawnPoint = visitedCells[i].DiamondSpawnPoint;
+            Instantiate(_diamondPrefab, spawnPoint.position, Quaternion.identity);
+        }
     }
         
 

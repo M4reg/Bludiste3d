@@ -13,6 +13,8 @@ public class MazeCell : MonoBehaviour
     [SerializeField]
     private GameObject _unvisitedBlock;
 
+    public Transform DiamondSpawnPoint { get; private set; }
+
     public bool IsVisited { get; private set; }
 
     public void Visit()
@@ -39,5 +41,10 @@ public class MazeCell : MonoBehaviour
     public void ClearBackWall()
     {
         _backWall.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        DiamondSpawnPoint = transform.Find("DiamondSpawnPoint");
     }
 }

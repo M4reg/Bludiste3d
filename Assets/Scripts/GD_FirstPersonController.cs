@@ -6,8 +6,8 @@ public class GD_FirstPersonController : MonoBehaviour
 {
     public float WalkSpeed = 0.5f;
     public float SprintMultiplier = 2f;
-    public float JumpForce = 5f;
-    public float GoundCheckDistance = 1.5f;
+    public float JumpForce = 0.1f;
+    public float GoundCheckDistance = 0.2f;
     public float LookSensitivityX = 1f;
     public float LookSensitivityY = 1f;
     public float MaxYLookAngle = 90f;
