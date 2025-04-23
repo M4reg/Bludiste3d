@@ -13,7 +13,7 @@ public class EnemyNavigation : MonoBehaviour
     private NavMeshAgent agent;
     private Light playerLight;
     private Flashlight flashlight;
-    private bool chasingPlayer = false;
+    
     private float patrolTimer = 0f;
     private float patrolDelay = 5f;
     
@@ -32,7 +32,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (CanSeeFlashlight())
         {
-            chasingPlayer = true;
+            
             agent.SetDestination(player.position);
 
             if (Vector3.Distance(transform.position, player.position) < killRange)
@@ -42,7 +42,7 @@ public class EnemyNavigation : MonoBehaviour
         }
         else
         {
-            chasingPlayer = false;
+           
             patrolTimer += Time.deltaTime;
 
             if (patrolTimer >= patrolDelay || agent.remainingDistance < 0.5f)
