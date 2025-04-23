@@ -535,7 +535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f0d9dd6e4f4e60f41b01b3727b507521, type: 2}
-  levelIndex: 0
 --- !u!1 &236437753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,14 +1118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
-  levelConfigs:
+  allLevels:
   - {fileID: 11400000, guid: 25c5cffaedd29634db05ed8ce40a722e, type: 2}
   - {fileID: 11400000, guid: 7bb68764362c6a94ba7df6657cf37f31, type: 2}
   - {fileID: 11400000, guid: f0d9dd6e4f4e60f41b01b3727b507521, type: 2}
-  levelSelectButtons:
-  - {fileID: 1546010977}
-  - {fileID: 1557720157}
-  - {fileID: 226999601}
 --- !u!4 &393043108
 Transform:
   m_ObjectHideFlags: 0
@@ -3538,7 +3533,6 @@ GameObject:
   - component: {fileID: 1546010976}
   - component: {fileID: 1546010975}
   - component: {fileID: 1546010974}
-  - component: {fileID: 1546010978}
   - component: {fileID: 1546010977}
   m_Layer: 0
   m_Name: Level1
@@ -3674,19 +3668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 25c5cffaedd29634db05ed8ce40a722e, type: 2}
-  levelIndex: 0
---- !u!114 &1546010978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546010972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e33d70bcbdb5524ca73a6fb9cd77556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1557720152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,7 +3815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 7bb68764362c6a94ba7df6657cf37f31, type: 2}
-  levelIndex: 0
 --- !u!1 &1617216409
 GameObject:
   m_ObjectHideFlags: 0
