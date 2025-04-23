@@ -24,6 +24,11 @@ public class MazeGenerator : MonoBehaviour
 
     void Start()
     {
+        var level = GameManager.Instance.currentLevel;
+        _mazeWidth = level.mazeWidth;
+        _mazeDepth = level.mazeDepth;
+        _numberOfDiamonds = level.numberOfDiamonds;
+
         _mazeGrid = new MazeCell[_mazeWidth, _mazeDepth];
 
         for(int x = 0; x < _mazeWidth; x++)
@@ -35,6 +40,13 @@ public class MazeGenerator : MonoBehaviour
         }
 
         GenerateMaze(null, _mazeGrid[0,0]);
+
+        /*if(level.hasEnemy){
+            _enemyPrefab.SetActive(true);
+        }else{
+            _enemyPrefab.SetActive(false);
+        }*/
+
         PlaceDiamonds();
     }
 
