@@ -35,7 +35,8 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        
+        // Unlock the next level
+        GameManager.Instance.UnlockNextLevel();
     }
 
     public void RestartLevel()
