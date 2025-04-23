@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ad38f6866c132342a6570b3f007edb3, type: 2}
+  - {fileID: 2100000, guid: 11359285b960fb944a918b2847861266, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,10 +119,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4573871418633252047}
-  - component: {fileID: 5568086790589835361}
   - component: {fileID: 3248101867077961225}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,28 +144,6 @@ Transform:
   - {fileID: 1539989655112154304}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5568086790589835361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6511810296862669159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008d09d92ef4efb47a6b707bf77a7ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WalkSpeed: 2
-  SprintMultiplier: 2
-  JumpForce: 5
-  GoundCheckDistance: 1.5
-  LookSensitivityX: 1
-  LookSensitivityY: 1
-  MaxYLookAngle: 90
-  MinYLookAngle: -90
-  PlayerCamera: {fileID: 1539989655112154304}
-  Gravity: -9.81
 --- !u!143 &3248101867077961225
 CharacterController:
   m_ObjectHideFlags: 0

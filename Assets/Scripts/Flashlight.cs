@@ -5,7 +5,7 @@ public class Flashlight : MonoBehaviour
 
     public GameObject ON;
     public GameObject OFF;
-    private bool isOn;
+    public bool isOn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

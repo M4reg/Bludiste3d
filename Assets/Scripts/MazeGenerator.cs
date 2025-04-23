@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour
 {            
@@ -40,6 +41,8 @@ public class MazeGenerator : MonoBehaviour
         }
 
         GenerateMaze(null, _mazeGrid[0,0]);
+
+        GetComponent<NavMeshSurface>().BuildNavMesh();
 
         /*if(level.hasEnemy){
             _enemyPrefab.SetActive(true);
