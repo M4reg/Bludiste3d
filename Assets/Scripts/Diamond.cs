@@ -6,12 +6,19 @@ public class Diamond : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+        Debug.Log("Something hit the diamond: " + other.name);
 
-        if (playerInventory != null)
+    if (other.CompareTag("Player"))
+    {
+        Debug.Log("Player hit the diamond!");
+
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        if (levelManager != null)
         {
-            playerInventory.DiamondCollected();
-            gameObject.SetActive(false);
+            levelManager.OnDiamondCollected();
         }
+
+        gameObject.SetActive(false);
+    }
     }
 }

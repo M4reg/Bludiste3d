@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public LevelConfig currentLevel;
+    
+    
 
     private void Awake()
     {

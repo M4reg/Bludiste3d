@@ -535,6 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: f0d9dd6e4f4e60f41b01b3727b507521, type: 2}
+  levelIndex: 0
 --- !u!1 &236437753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
+  levelConfigs:
+  - {fileID: 11400000, guid: 25c5cffaedd29634db05ed8ce40a722e, type: 2}
+  - {fileID: 11400000, guid: 7bb68764362c6a94ba7df6657cf37f31, type: 2}
+  - {fileID: 11400000, guid: f0d9dd6e4f4e60f41b01b3727b507521, type: 2}
+  levelSelectButtons:
+  - {fileID: 1546010977}
+  - {fileID: 1557720157}
+  - {fileID: 226999601}
 --- !u!4 &393043108
 Transform:
   m_ObjectHideFlags: 0
@@ -3665,6 +3674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 25c5cffaedd29634db05ed8ce40a722e, type: 2}
+  levelIndex: 0
 --- !u!114 &1546010978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3824,6 +3834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 7bb68764362c6a94ba7df6657cf37f31, type: 2}
+  levelIndex: 0
 --- !u!1 &1617216409
 GameObject:
   m_ObjectHideFlags: 0

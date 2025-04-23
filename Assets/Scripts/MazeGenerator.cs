@@ -47,7 +47,10 @@ public class MazeGenerator : MonoBehaviour
             _enemyPrefab.SetActive(false);
         }*/
 
+        
         PlaceDiamonds();
+        FindFirstObjectByType<LevelManager>()?.InitializeDiamondsCount();
+
     }
 
     private void GenerateMaze(MazeCell previousCell, MazeCell currentCell)

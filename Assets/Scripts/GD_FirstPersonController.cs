@@ -27,6 +27,12 @@ public class GD_FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        // Zpracovávat vstupy pouze pokud hra není pozastavena a kurzor je uzamčen
+        if (Time.timeScale == 0f || Cursor.lockState != CursorLockMode.Locked)
+        {
+            return; // Přeskočit zpracování vstupů
+        }
+
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
 
