@@ -79,7 +79,6 @@ public class EnemyNavigation : MonoBehaviour
                     {
                         if (hit.transform == transform)
                         {
-                            Debug.Log("Enemy sees flashlight!");
                             return true;
                         }
                     }
@@ -90,9 +89,10 @@ public class EnemyNavigation : MonoBehaviour
     }
     void KillPlayer()
     {
-        Debug.Log("You were caught by the enemy!");
-        // Add your game over logic here:
-        // Time.timeScale = 0f;
-        // SceneManager.LoadScene("GameOver");
+        LevelManager levelManager = Object.FindFirstObjectByType<LevelManager>();
+        if (levelManager != null)
+        {
+            levelManager.ShowGameOverMenu(); // Volá metodu pro zobrazení Game Over menu
+        }
     }
 }

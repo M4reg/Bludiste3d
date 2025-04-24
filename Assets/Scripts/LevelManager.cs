@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject finishMenu;
+    [SerializeField] private GameObject gameOverMenu;
 
     private int totalDiamonds;
     private int collectedDiamonds;
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         collectedDiamonds = 0;
         finishMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
         InitializeDiamondsCount();
     }
 
@@ -39,6 +41,19 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.UnlockNextLevel();
     }
 
+    public void ShowGameOverMenu()
+    {
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        GD_FirstPersonController controller = Object.FindFirstObjectByType<GD_FirstPersonController>();
+        if (controller != null)
+        {
+            controller.enabled = false; // Disable the player controller
+        }
+    }
     public void RestartLevel()
     {
         Time.timeScale = 1f;
