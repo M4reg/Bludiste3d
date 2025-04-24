@@ -46,5 +46,18 @@ public class MazeCell : MonoBehaviour
     private void Awake()
     {
         DiamondSpawnPoint = transform.Find("DiamondSpawnPoint");
+        float RandomEpsilon() => Random.Range(-0.001f, 0.001f); // malý náhodný offset posun stěny kvůli Z fighting
+
+        if (_leftWall != null)
+            _leftWall.transform.localPosition += new Vector3(RandomEpsilon(), 0, RandomEpsilon());
+
+        if (_rightWall != null)
+            _rightWall.transform.localPosition += new Vector3(RandomEpsilon(), 0, RandomEpsilon());
+
+        if (_frontWall != null)
+            _frontWall.transform.localPosition += new Vector3(RandomEpsilon(), 0, RandomEpsilon());
+
+        if (_backWall != null)
+            _backWall.transform.localPosition += new Vector3(RandomEpsilon(), 0, RandomEpsilon());
     }
 }

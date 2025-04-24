@@ -37,7 +37,6 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        // Unlock the next level
         GameManager.Instance.UnlockNextLevel();
     }
 
@@ -51,7 +50,7 @@ public class LevelManager : MonoBehaviour
         GD_FirstPersonController controller = Object.FindFirstObjectByType<GD_FirstPersonController>();
         if (controller != null)
         {
-            controller.enabled = false; // Disable the player controller
+            controller.enabled = false; 
         }
     }
     public void RestartLevel()
@@ -73,7 +72,6 @@ public class LevelManager : MonoBehaviour
     public void InitializeDiamondsCount()
     {
         totalDiamonds = Object.FindObjectsByType<Diamond>(FindObjectsSortMode.None).Length;
-        Debug.Log("Diamonds found (after maze generation): " + totalDiamonds);
         // Najdeme hráče a nastavíme mu počet diamantů
         var player = FindFirstObjectByType<PlayerInventory>();
         if (player != null)
