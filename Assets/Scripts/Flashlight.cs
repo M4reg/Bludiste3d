@@ -6,7 +6,6 @@ public class Flashlight : MonoBehaviour
     public GameObject ON;
     public GameObject OFF;
     public bool isOn;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     // Přidání proměnných pro zvuky
     public AudioClip flashlightOnSound; // Zvuk zapnutí baterky
@@ -19,7 +18,7 @@ public class Flashlight : MonoBehaviour
         OFF.SetActive(true);
         isOn = false;
 
-        // Inicializace AudioSource
+        // Získá nebo vytvoří AudioSource komponentu pro přehrávání zvuků
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -31,13 +30,15 @@ public class Flashlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Přepínání baterky pomocí klávesy F
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (isOn)
             {
-                ON.SetActive(false);
-                OFF.SetActive(true);
-                audioSource.PlayOneShot(flashlightOffSound);
+                // Vypnutí baterky
+                ON.SetActive(false); // Vypne světlo
+                OFF.SetActive(true); // Zapne model baterky bez světla
+                audioSource.PlayOneShot(flashlightOffSound); // Přehraje zvuk vypnutí
             }
             else
             {
@@ -45,7 +46,7 @@ public class Flashlight : MonoBehaviour
                 OFF.SetActive(false);
                 audioSource.PlayOneShot(flashlightOnSound);
             }
-            isOn = !isOn;
+            isOn = !isOn;  // Přepne stav
         }
     }
 }

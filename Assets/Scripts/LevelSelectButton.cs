@@ -8,19 +8,19 @@ public class LevelSelectButton : MonoBehaviour
    
    void Start()
     {
+        // Získání komponenty Button
         button = GetComponent<Button>();
         if (button == null)
         {
-            Debug.LogError("Button component not found on LevelSelectButton!");
             return;
         }
     // Enable button only if the level is unlocked
         button.interactable = GameManager.Instance.IsLevelUnlocked(config);
     }
+    // Spuštění úrovně po kliknutí na tlačítko
     public void StartLevel(){
         GameManager.Instance.currentLevel = config;
         SceneManager.LoadScene("GameScene");
-        Debug.Log("Starting level: " + config.levelName);
     }
     
 }

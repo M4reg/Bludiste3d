@@ -33,7 +33,7 @@ public class EnemyNavigation : MonoBehaviour
         flashlight = player.GetComponentInChildren<Flashlight>();
         GoToRandomPoint();
 
-        // Inicializace AudioSource
+        // Nastavení AudioSource pro přehrávání 3D zvuku
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -67,11 +67,13 @@ public class EnemyNavigation : MonoBehaviour
             footstepTimer = footstepInterval; // Reset časovače, když nepřítel stojí
         }
         
+        // Detekce hráče pomocí světla
         if (CanSeeFlashlight())
         {
-            
+            // Sleduje hráče
             agent.SetDestination(player.position);
 
+            // Pokud je hráč dost blízko, "zabije" ho
             if (Vector3.Distance(transform.position, player.position) < killRange)
             {
                 KillPlayer();
@@ -79,7 +81,7 @@ public class EnemyNavigation : MonoBehaviour
         }
         else
         {
-           
+           // Hlídkuje, pokud hráče nevidí
             patrolTimer += Time.deltaTime;
 
             if (patrolTimer >= patrolDelay || agent.remainingDistance < 0.5f)
@@ -89,6 +91,8 @@ public class EnemyNavigation : MonoBehaviour
             }
         }
     }
+    
+    // Posílá nepřítele na náhodný bod v okolí pro hlídku
     void GoToRandomPoint()
     {
         Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
@@ -99,8 +103,10 @@ public class EnemyNavigation : MonoBehaviour
             agent.SetDestination(hit.position);
         }
     }
+    // Zjišťuje, zda je nepřítel osvětlen baterkou hráče
     bool CanSeeFlashlight()
     {
+
         if (flashlight != null && flashlight.isOn && playerLight != null && playerLight.enabled)
         {
         Vector3 toEnemy = transform.position - playerLight.transform.position;
@@ -108,10 +114,11 @@ public class EnemyNavigation : MonoBehaviour
 
             if (distance <= detectionRange)
             {
+                // Úhel mezi směrem světla a směrem k nepříteli
                 float angle = Vector3.Angle(playerLight.transform.forward, toEnemy.normalized);
                 if (angle <= playerLight.spotAngle / 2f)
                 {
-                    // Je enemy v kuželu světla?
+                    // Raycast pro ověření, že nepřekáží žádný objekt
                     if (Physics.Raycast(playerLight.transform.position, toEnemy.normalized, out RaycastHit hit, detectionRange))
                     {
                         if (hit.transform == transform)

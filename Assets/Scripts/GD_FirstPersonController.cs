@@ -21,8 +21,8 @@ public class GD_FirstPersonController : MonoBehaviour
 
     void Awake()
     {
-        characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
+        characterController = GetComponent<CharacterController>(); // Získá CharacterController
+        Cursor.lockState = CursorLockMode.Locked; // Uzamkne kurzor do středu obrazovky
     }
 
     void Update()
@@ -33,12 +33,15 @@ public class GD_FirstPersonController : MonoBehaviour
             return; // Přeskočit zpracování vstupů
         }
 
+        // Získání vstupů pro pohyb
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
 
+        // Výpočet směru pohybu podle transformace hráče
         Vector3 moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
         moveDirection.Normalize();
 
+        // Aplikace rychlosti pohybu, se sprintem pokud aktivován
         float speed = WalkSpeed;
         if(Input.GetAxis("Sprint") > 0)
         {
@@ -47,26 +50,30 @@ public class GD_FirstPersonController : MonoBehaviour
 
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
+        // Skákání a gravitace
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             velocity.y = JumpForce;
         }else{
-            velocity.y += Gravity * Time.deltaTime;
+            velocity.y += Gravity * Time.deltaTime;  // Gravitační pád
         }
 
         characterController.Move(velocity * Time.deltaTime);
 
+        // Kamera – otočení podle myši
         if(PlayerCamera != null){
             float mouseX = Input.GetAxis("Mouse X") * LookSensitivityX;
             float mouseY = Input.GetAxis("Mouse Y") * LookSensitivityY;
             
-            verticalRotation -= mouseY;
+            verticalRotation -= mouseY; // Myš nahoru/dolů
             verticalRotation = Mathf.Clamp(verticalRotation, MinYLookAngle, MaxYLookAngle);
 
-            PlayerCamera.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
-            transform.Rotate(Vector3.up * mouseX);
+            PlayerCamera.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f); // Otočení kamery nahoru/dolů
+            transform.Rotate(Vector3.up * mouseX); // Otočení postavy doleva/doprava
         }
     }
+
+     // Kontrola, jestli je hráč na zemi (pomocí raycastu směrem dolů)
     bool IsGrounded()
     {
         RaycastHit hit;

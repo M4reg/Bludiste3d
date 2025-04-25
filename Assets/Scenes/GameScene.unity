@@ -3173,8 +3173,8 @@ MonoBehaviour:
   ON: {fileID: 2030491194}
   OFF: {fileID: 736268412}
   isOn: 0
-  flashlightOnSound: {fileID: 8300000, guid: 818ceeca65489e14ab6864f21ac80fd5, type: 3}
-  flashlightOffSound: {fileID: 8300000, guid: aebae0e89d575dc43ae340319487ef87, type: 3}
+  flashlightOnSound: {fileID: 8300000, guid: 52104bc3637e70540be457e0ba1ba9cd, type: 3}
+  flashlightOffSound: {fileID: 8300000, guid: 44a5d716536c11248a09ee1a54d5d168, type: 3}
 --- !u!82 &1180227609
 AudioSource:
   m_ObjectHideFlags: 0

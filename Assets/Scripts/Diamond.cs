@@ -6,18 +6,17 @@ public class Diamond : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something hit the diamond: " + other.name);
-
+       
     if (other.CompareTag("Player"))
     {
-        Debug.Log("Player hit the diamond!");
-
+        // Najde instanci třídy LevelManager (správce úrovně)
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
         if (levelManager != null)
         {
+            // Pokud správce úrovně existuje, spustí metodu pro sbírání diamantů
             levelManager.OnDiamondCollected();
         }
-
+        // Deaktivuje objekt diamantu (zmizí ze scény)
         gameObject.SetActive(false);
     }
     }

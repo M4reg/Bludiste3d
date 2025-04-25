@@ -3,25 +3,31 @@ using UnityEngine.Events;
 
 public class PlayerInventory : MonoBehaviour
 {
+
+    // Počet nasbíraných diamantů
     public int NumberOfDiamonds { get; private set; }
+
+    // Celkový počet diamantů k sebrání v úrovni
     public int TotalDiamondsToCollect { get; set; }
+
+    // Event, který se spustí, když hráč nasbírá diamant
     public UnityEvent<PlayerInventory> OnDiamondCollected;
+
+     // Odkaz na UI inventáře
     public InventoryUI inventoryUI;
 
+     // Metoda pro sbírání diamantů
     public void DiamondCollected()
     {
+        // Zvětšení počtu diamantů
         NumberOfDiamonds++;
 
-        // Debug pro ověření, že metoda DiamondCollected je volaná
-        Debug.Log("Diamond collected! Total: " + NumberOfDiamonds);
-
-        // Pokud máme připojený InventoryUI, aktualizujeme text
+        // Pokud máme přiřazené UI pro inventář, aktualizujeme zobrazení počtu diamantů
         if (inventoryUI != null)
         {
-            inventoryUI.UpdateDiamondText(this);  // Voláme metodu pro aktualizaci textu
-            Debug.Log("Updated UI with new number of diamonds: " + NumberOfDiamonds);
+            inventoryUI.UpdateDiamondText(this);  // Volání metody pro aktualizaci textu
         }
 
-        OnDiamondCollected.Invoke(this);
+        OnDiamondCollected.Invoke(this); // Vyvolání eventu, že diamant byl nasbírán
     }
 }
