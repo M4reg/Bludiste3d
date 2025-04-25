@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73593ea381235e548965e3f1ad279b90
+guid: aebae0e89d575dc43ae340319487ef87
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -25,5 +25,5 @@ AssetOrigin:
   productId: 244644
   packageName: Free UI Click Sound Pack
   packageVersion: 1.0
-  assetPath: Assets/Free UI Click Sound Effects Pack/AUDIO/Button/SFX_UI_Button_Organic_Plastic_Thin_Generic_1.wav
+  assetPath: Assets/Free UI Click Sound Effects Pack/AUDIO/Button/SFX_UI_Button_Organic_Plastic_Generic_2.wav
   uploadId: 556812
