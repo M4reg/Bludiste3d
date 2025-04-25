@@ -16,6 +16,13 @@ public class EnemyNavigation : MonoBehaviour
     
     private float patrolTimer = 0f;
     private float patrolDelay = 5f;
+
+    // Proměnné pro zvuk kroků
+    public AudioClip footstepSound; // Zvuk kroků
+    private AudioSource audioSource;
+    public float footstepInterval = 0.5f; // Interval mezi kroky
+    private float footstepTimer = 0f;
+    public float maxFootstepDistance = 20f; // Maximální vzdálenost, při které je zvuk slyšet
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,11 +32,41 @@ public class EnemyNavigation : MonoBehaviour
         playerLight = player.GetComponentInChildren<Light>();
         flashlight = player.GetComponentInChildren<Flashlight>();
         GoToRandomPoint();
+
+        // Inicializace AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Nastavení AudioSource pro 3D zvuk
+        audioSource.clip = footstepSound;
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // Plně 3D zvuk
+        audioSource.maxDistance = maxFootstepDistance; // Maximální vzdálenost slyšitelnosti
+        audioSource.rolloffMode = AudioRolloffMode.Linear; // Lineární úbytek hlasitosti
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Přehrávání zvuků kroků, pokud se nepřítel pohybuje
+        if (agent.velocity.magnitude > 0.1f) // Kontrola, zda se nepřítel pohybuje
+        {
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer >= footstepInterval)
+            {
+                audioSource.PlayOneShot(footstepSound);
+                footstepTimer = 0f; // Reset časovače
+            }
+        }
+        else
+        {
+            footstepTimer = footstepInterval; // Reset časovače, když nepřítel stojí
+        }
+        
         if (CanSeeFlashlight())
         {
             
