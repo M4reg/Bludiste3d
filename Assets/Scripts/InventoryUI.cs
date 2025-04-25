@@ -9,10 +9,12 @@ public class InventoryUI : MonoBehaviour
     
     private TextMeshProUGUI diamondText;
     public AudioClip diamondCollectSound; // Zvuk pro sbírání diamantů
+    private AudioSource audioSource;
+
     void Start()
     {
         diamondText = GetComponent<TextMeshProUGUI>();  // Získání reference na TextMeshProUGUI
-
+        audioSource = GetComponent<AudioSource>();
         // Debug pro ověření, že máme správně přiřazený TextMeshProUGUI
         if (diamondText == null)
         {
@@ -38,7 +40,7 @@ public class InventoryUI : MonoBehaviour
             {
                 // Přehrát zvuk na pozici hráče (pro 3D efekt)
                 Vector3 playerPosition = FindFirstObjectByType<GD_FirstPersonController>().transform.position;
-                AudioSource.PlayClipAtPoint(diamondCollectSound, playerPosition, 1f);
+                audioSource.PlayOneShot(diamondCollectSound);
                 Debug.Log("Playing diamond collect sound at player position: " + playerPosition);
             }
             else

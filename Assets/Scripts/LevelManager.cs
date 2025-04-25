@@ -4,7 +4,12 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject finishMenu;
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private AudioClip finishMenuSound; 
+    [SerializeField] private AudioClip gameOverMenuSound;
+    private AudioSource finishAudioSource;
+    private AudioSource gameOverAudioSource;
 
+    private AudioSource audioSource;
     private int totalDiamonds;
     private int collectedDiamonds;
 
@@ -15,6 +20,14 @@ public class LevelManager : MonoBehaviour
         finishMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         InitializeDiamondsCount();
+
+        // Finish zvuk
+    finishAudioSource = gameObject.AddComponent<AudioSource>();
+    finishAudioSource.volume = 0.55f; 
+
+    // GameOver zvuk
+    gameOverAudioSource = gameObject.AddComponent<AudioSource>();
+    gameOverAudioSource.volume = 0.016f; 
     }
 
     public void OnDiamondCollected()
@@ -38,6 +51,11 @@ public class LevelManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.Instance.UnlockNextLevel();
+
+        if (finishMenuSound != null)
+    {
+        finishAudioSource.PlayOneShot(finishMenuSound);
+    }
     }
 
     public void ShowGameOverMenu()
@@ -51,6 +69,11 @@ public class LevelManager : MonoBehaviour
         if (controller != null)
         {
             controller.enabled = false; 
+        }
+
+        if (gameOverMenuSound != null)
+        {
+            gameOverAudioSource.PlayOneShot(gameOverMenuSound);
         }
     }
     public void RestartLevel()

@@ -5,7 +5,7 @@ using System.Collections;
 public class GD_FirstPersonController : MonoBehaviour
 {
     public float WalkSpeed = 0.5f;
-    public float SprintMultiplier = 2f;
+    public float SprintMultiplier = 1.05f;
     public float JumpForce = 0.1f;
     public float GoundCheckDistance = 0.2f;
     public float LookSensitivityX = 1f;
