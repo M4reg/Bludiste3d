@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    
     private TextMeshProUGUI diamondText;
+    public AudioClip diamondCollectSound; // Zvuk pro sbírání diamantů
     void Start()
     {
         diamondText = GetComponent<TextMeshProUGUI>();  // Získání reference na TextMeshProUGUI
@@ -15,6 +17,11 @@ public class InventoryUI : MonoBehaviour
         if (diamondText == null)
         {
             Debug.LogError("TextMeshProUGUI component not found on this GameObject!");
+        }
+        // Kontrola přiřazení zvuku
+        if (diamondCollectSound == null)
+        {
+            Debug.LogWarning("DiamondCollectSound is not assigned in InventoryUI!");
         }
     }
 
@@ -25,6 +32,19 @@ public class InventoryUI : MonoBehaviour
             // Aktualizace textu s počtem diamantů
             Debug.Log("Updating diamond text to: " + playerInventory.NumberOfDiamonds);
             diamondText.text = playerInventory.NumberOfDiamonds.ToString();
+
+            // Přehrání zvuku sběru diamantu
+            if (diamondCollectSound != null)
+            {
+                // Přehrát zvuk na pozici hráče (pro 3D efekt)
+                Vector3 playerPosition = FindFirstObjectByType<GD_FirstPersonController>().transform.position;
+                AudioSource.PlayClipAtPoint(diamondCollectSound, playerPosition, 1f);
+                Debug.Log("Playing diamond collect sound at player position: " + playerPosition);
+            }
+            else
+            {
+                Debug.LogWarning("Cannot play diamond collect sound: AudioClip is missing in InventoryUI!");
+            }
         }
         else
         {
